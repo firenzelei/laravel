@@ -14,3 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group([],function(){
+
+	//后台首页
+	Route::any('/admin',function(){
+		return view('admin.admin',['title'=>'后台首页管理']);
+	});
+
+	//后台用户管理
+	ROute::resource('/admin/user','Admin\UserController');
+
+
+});
