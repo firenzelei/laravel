@@ -19,7 +19,7 @@ Route::group([],function(){
 
 	//后台首页
 	Route::any('/admin',function(){
-		return view('admin.admin',['title'=>'后台首页管理']);
+		return view('admin.index',['title'=>'后台首页管理']);
 	});
 
 	//后台用户管理
