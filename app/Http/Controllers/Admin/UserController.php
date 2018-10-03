@@ -14,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        //后台管理的浏览页面
+        return view('admin.user.index',['title'=>'管理用户浏览']);
     }
 
     /**
@@ -23,8 +24,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('/admin.user.create',['title'=>'管理员添加']);
+    {   
+        //后台管理添加页面
+        return view('admin.user.create',['title'=>'管理员添加']);
     }
 
     /**
