@@ -23,39 +23,26 @@
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
 
-<title>{{$title}}</title>
-
 </head>
 <body>
 <article class="page-container">
-	<form action="/admin/user" method="post" class="form form-horizontal" id="form-member-add" enctype="multipart/form-data">
+	<form action="/admin/user/{{$res->id}}" method="post" class="form form-horizontal" id="form-member-add" enctype="multipart/form-data">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名:</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="adminName" name="uname">
+				<input type="text" class="input-text" value="{{$res->uname}}" placeholder="" id="adminName" name="uname">
 			</div>
 		</div>
-	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>初始密码:</label>
-		<div class="formControls col-xs-8 col-sm-9">
-			<input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="password" name="upwd">
-		</div>
-	</div>
-	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码:</label>
-		<div class="formControls col-xs-8 col-sm-9">
-			<input type="password" class="input-text" autocomplete="off"  placeholder="确认新密码" id="password2" name="upwd2">
-		</div>
-	</div>
+
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别:</label>
 		<div class="formControls col-xs-8 col-sm-9 skin-minimal">
 			<div class="radio-box">
-				<input name="sex" type="radio" id="sex-1" checked value="m">
+				<input name="sex" type="radio" id="sex-1" value='m' @if($res->sex == 'm') checked='checked' @endif>
 				<label for="sex-1">男</label>
 			</div>
 			<div class="radio-box">
-				<input type="radio" id="sex-2" name="sex" value="w">
+				<input type="radio" id="sex-2" name="sex" value='w' @if($res->sex == 'w') checked='checked' @endif>
 				<label for="sex-2">女</label>
 			</div>
 		</div>
@@ -63,32 +50,34 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机:</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" placeholder="" id="phone" name="phone">
+				<input type="text" class="input-text" value="{{$res->phone}}" id="phone" name="phone">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>邮箱:</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" placeholder="@" name="email" id="email">
+				<input type="text" class="input-text" value="{{$res->email}}" name="email" id="email">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">头像:</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="btn-upload form-group">
-
+			<div class="formControls col-xs-8 col-sm-9"> <span class="btn-upload form-group">		
 				<input type="file" name="profile" class="">
-				</span> </div>
+				</span> 
+				<img src="{{$res->profile}}" alt="" width='100px'>
+
+			</div>
 		</div>
 
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>状态:</label>
 			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
 				<div class="radio-box">
-					<input name="status" type="radio" id="sex-1" checked value="0">
+					<input name="status" type="radio" id="sex-1" value="0" @if($res->status == '0')  value='m'checked='checked' @endif>
 					<label for="sex-1">启用</label>
 				</div>
 				<div class="radio-box">
-					<input type="radio" id="sex-2" name="status" value="1">
+					<input type="radio" id="sex-2" name="status" value="1" @if($res->status == '1') checked='checked' @endif>
 					<label for="sex-2">禁用</label>
 				</div>
 			</div>
@@ -97,6 +86,7 @@
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 				{{ csrf_field() }}
+				{{ method_field('PUT') }}
 				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
 				
 			</div>
