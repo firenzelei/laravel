@@ -11,19 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+// 后台
 Route::group([],function(){
 
 	//后台首页
 	Route::any('/admin',function(){
 		return view('admin.index',['title'=>'后台首页管理']);
 	});
-
 	//后台用户管理
 	ROute::resource('/admin/user','Admin\UserController');
-
-
 });
